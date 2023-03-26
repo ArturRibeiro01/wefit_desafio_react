@@ -1,7 +1,5 @@
-import React from 'react'
+import HomeOrganism from '../../components/organisms/Home'
 
 export default function HomePage() {
-  return (
-    <div>Oi eu sou a Home Page</div>
-  )
+  return <HomeOrganism/>
 }

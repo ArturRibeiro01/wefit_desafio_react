@@ -10,7 +10,6 @@ export default function HeaderOrganism() {
 
 
   return (
-
     <HeaderContainer>
       <Link to="/">
         <Logo>
