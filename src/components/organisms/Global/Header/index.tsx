@@ -1,19 +1,34 @@
 import React from 'react'
-import { HeaderContainer } from './styles'
+import { Cart, CartContainer, HeaderContainer, Logo } from './styles'
+
+import  cartImg  from '../../../../assets/img/cart_icon.svg';
+import { Link } from 'react-router-dom';
+
 
 export default function HeaderOrganism() {
+
+
+
   return (
+
     <HeaderContainer>
-      <div>logo</div>
-      <div>
-        <div>
-          <div>
-            <p>carrinho</p>
-            <p>itens</p>
-          </div>
-          <p>imagem</p>
-        </div>
-      </div>
+      <Link to="/">
+        <Logo>
+          WeMovies
+        </Logo>
+      </Link>
+
+      <CartContainer>
+        <Link to="carrinho">
+          <Cart>
+            <div>
+              <p>Meu Carrinho</p>
+              <span>0 itens</span>
+            </div>
+            <img src={cartImg} />
+          </Cart>
+        </Link>
+      </CartContainer>
     </HeaderContainer>
   )
 }
