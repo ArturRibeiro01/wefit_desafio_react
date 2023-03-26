@@ -30,13 +30,10 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   const [products, setProducts] = useState<Products[]>([]);
 
   useEffect(() => {
-    console.log('products', products)
     setTimeout(() => {
       getProducts()
-      console.log('products', products)
-    }, 5000);
+    }, 0);
 
-    // getProducts()
   }, [])
 
 
