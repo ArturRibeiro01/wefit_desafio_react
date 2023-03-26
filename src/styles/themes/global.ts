@@ -8,4 +8,20 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  body {
+    background-color: ${(props) => props.theme.background};
+    color: ${(props) => props.theme.white};
+    -webkit-font-smoothing: antialised;
+  }
+
+
+  :focus {
+    outline: none;
+  }
+
+
+  body, input, textarea, button {
+    font: 400 1rem 'Open Sans', sans-serif;
+  }
+
 `
