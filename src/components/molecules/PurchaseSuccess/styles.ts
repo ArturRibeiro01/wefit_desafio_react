@@ -13,8 +13,9 @@ export const PurchaseSuccessContainer = styled.div`
 
 
 
-  @media (max-width: 768px) {
+  @media (max-width: 560px) {
     padding: 4rem 0;
+
   }
 
   p {

@@ -44,6 +44,11 @@ export const Cart = styled.div`
     color: ${(props) => props.theme.white};
     font-size: 14px;
     font-weight: 600;
+
+
+    @media (max-width: 560px) {
+      display: none;
+    }
   }
 
   span {
