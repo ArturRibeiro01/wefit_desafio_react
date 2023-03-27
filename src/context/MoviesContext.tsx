@@ -11,6 +11,7 @@ interface Products {
   image: string;
   inCart?: boolean | undefined | null
 
+
 }
 
 interface MoviesContextType {
@@ -37,7 +38,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   }, [])
 
 
-
   //Faz a requisição de todas os produtos
   const getProducts = useCallback( async () => {
     const response = await api.get('/products', {
@@ -46,6 +46,9 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
 
     setProducts(response.data)
   }, [])
+
+
+  //Adicionar um item ao carrinho
 
 
 

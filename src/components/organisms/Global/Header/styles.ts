@@ -30,7 +30,6 @@ export const CartContainer = styled.button`
 
 `;
 
-
 export const Cart = styled.div`
   display: flex;
   align-items: center;

@@ -16,6 +16,7 @@ export const CardContainer  = styled.div`
   }
 
 `
+
 export const CardTitle  = styled.p`
   font-size: 12px;
   font-weight: 700;
@@ -23,6 +24,7 @@ export const CardTitle  = styled.p`
   line-height: 16.4px;
   margin-top: 10px;
 `
+
 export const CardPrice  = styled.p`
   font-size: 1rem;
   font-weight: 700;

@@ -1,7 +1,8 @@
 import React from 'react'
+import NoMatchOrganism from '../../components/organisms/NoMatch'
 
 export default function NoMatchPage() {
   return (
-    <div>Eu sou o No Match Page</div>
+    <NoMatchOrganism/>
   )
 }
