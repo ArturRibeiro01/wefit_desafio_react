@@ -26,9 +26,10 @@ interface MoviesContextType {
   itemCart: ItemCart[]
   inCartQuantity: number
   getProducts: () => void
-  ItemsCartTotal: number
 
-  addMovieToCart: (movie: ItemCart) => void
+  ItemsCartTotal: number //numero de itens no carrinho
+
+  addProductToCart: (movie: ItemCart) => void
   changeCartItemQuantity: (value: ChangeItemCartQtdProps) => void
   cleanCart: () => void
   haveMovieInCart: (itemId: number) => number
@@ -62,11 +63,21 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
 
   let haveMovieInCart = useCallback(
     (movieId: number) => itemCart.findIndex(({ id }) => id === movieId),
+
     [itemCart],
   )
 
+  //Faz a requisição de todas os produtos
+  const getProducts = useCallback( async () => {
+    const response = await api.get('/products', {
+      params: {},
+    })
 
-  const addMovieToCart = useCallback(
+    setProducts(response.data)
+  }, [])
+
+
+  const addProductToCart = useCallback(
     (movie: ItemCart) => {
       const movieAlreadyExistsInCart = haveMovieInCart(movie.id)
 
@@ -82,6 +93,7 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     },
     [itemCart, haveMovieInCart],
   )
+
 
   const changeCartItemQuantity = useCallback(
     ({ itemId, type }: ChangeItemCartQtdProps) => {
@@ -135,6 +147,20 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     [itemCart, haveMovieInCart],
   )
 
+  //
+  //
+  //
+  useEffect(() => {
+    setTimeout(() => {
+      getProducts()
+    }, 0);
+  }, [])
+
+  //
+  //
+  //
+
+
   const cleanCart = useCallback(() => {
     setItemCart([])
     saveLocalStorage([])
@@ -152,28 +178,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   }, [])
 
 
-  //
-  //
-  //
-  //
-  //
-
-  useEffect(() => {
-    setTimeout(() => {
-      getProducts()
-    }, 0);
-
-  }, [])
-
-
-  //Faz a requisição de todas os produtos
-  const getProducts = useCallback( async () => {
-    const response = await api.get('/products', {
-      params: {},
-    })
-
-    setProducts(response.data)
-  }, [])
 
 
 
@@ -183,12 +187,13 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
       value={{
         products,
         getProducts,
+
         itemCart,
         inCartQuantity,
         ItemsCartTotal,
         haveMovieInCart,
 
-        addMovieToCart,
+        addProductToCart,
         changeCartItemQuantity,
         cleanCart,
 

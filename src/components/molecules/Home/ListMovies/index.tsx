@@ -7,10 +7,11 @@ import { ListMoviesContainer } from './styles'
 export default function ListMovies() {
 
 
-
   const products = useContextSelector(MoviesContext, (context) => {
     return context.products
   });
+
+
 
 
   return (
@@ -23,6 +24,7 @@ export default function ListMovies() {
             image={card.image}
             title={card.title}
             price={card.price}
+            product={card}
           />
         </div>
       ))}
