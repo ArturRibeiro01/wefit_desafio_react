@@ -95,12 +95,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     [itemCart, haveMovieInCart],
   )
 
-
-
-
-
-
-
   //Muda a Quantidade de itens no carrinho
   const changeCartItemQuantity = useCallback(
     ({ itemId, type }: ChangeItemCartQtdProps) => {
@@ -124,15 +118,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     },
     [itemCart, haveMovieInCart],
   )
-
-
-
-
-
-
-
-
-
 
   // Remove um item do carrinho
   const removeCartItem = useCallback(

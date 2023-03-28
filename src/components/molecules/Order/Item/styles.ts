@@ -10,7 +10,7 @@ export const ItemCartContainer = styled.section`
 
 export const CulumnsModel = styled.div`
   display: grid;
-  grid-template-columns: 2fr repeat(3, 1fr);
+  grid-template-columns: 3fr repeat(3, 1fr);
   grid-template-rows: 1fr;
 `
 
@@ -38,6 +38,7 @@ export const ItemContainer = styled(CulumnsModel)`
   }
 
 `
+
 export const TitleAndPriceContainer = styled.div`
   display: block !important;
   color: ${(props) => props.theme.background};
@@ -57,10 +58,6 @@ export const TitleAndPriceContainer = styled.div`
   }
 
 `
-
-//
-//
-//
 
 export const SelectorQuantity = styled.section`
   display: flex;
@@ -110,64 +107,11 @@ export const SelectorQuantity = styled.section`
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//
-//
-//
-
-
-
-export const TrashButtonContainer = styled.div`
-  justify-content: end;
-
-  button {
-    background-color: transparent;
-    border: 0;
-  }
-
-`
 export const Subtotal = styled.p`
-  width: min(100%, 21.369rem);
-  font-size: 1.6rem;
-  color: $gray900;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 22px;
 
-  span: {
-    display: none;
-  };
 
   // '@sm': {
   //   width: 'fit-content',
@@ -183,6 +127,16 @@ export const Subtotal = styled.p`
   //     textTransform: 'uppercase',
   //   },
   // },
+`
+
+export const TrashButtonContainer = styled.div`
+  justify-content: end;
+
+  button {
+    background-color: transparent;
+    border: 0;
+  }
+
 `
 
 export const PurchaseItemsContainer = styled.div`

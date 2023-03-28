@@ -27,8 +27,6 @@ export default function Item() {
     return context.changeCartItemQuantity
   });
 
-
-
   const itemTitleSub = ["produto","qtd","subtotal",""];
 
 
@@ -78,8 +76,6 @@ export default function Item() {
               </button>
             </SelectorQuantity>
           <Subtotal>
-            {/* <span>{subtotal}</span> */}
-
             <span>{
              formatPrice.format(item.price * item.quantity)
             }</span>

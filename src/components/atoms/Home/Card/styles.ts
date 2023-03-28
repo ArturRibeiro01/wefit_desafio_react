@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const CardContainer  = styled.div`
   background-color: ${(props) => props.theme.white};
@@ -32,9 +32,8 @@ export const CardPrice  = styled.p`
   margin: 10px 0;
 `
 
-export const AddCharButton  = styled.button`
+export const AddCharButton = styled.button`
   width: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,7 +42,6 @@ export const AddCharButton  = styled.button`
   border: 0;
   border-radius: 4px;
   padding: 11px 0;
-
 
   background-color: ${(props) => props.theme['blue-500']};
   color: ${(props) => props.theme.white};
@@ -59,4 +57,8 @@ export const AddCharButton  = styled.button`
     font-size: 12px;
     font-weight: 400;
   }
+`
+export const InChartButton = styled(AddCharButton)`
+  background-color: ${(props) => props.theme['green-500']};
+  cursor : not-allowed
 `

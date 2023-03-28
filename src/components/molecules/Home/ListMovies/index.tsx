@@ -11,6 +11,12 @@ export default function ListMovies() {
     return context.products
   });
 
+  const qtdinCart = useContextSelector(MoviesContext, (context) => {
+    return context.quantityMovieInStorage
+  });
+
+
+
   return (
     <ListMoviesContainer>
 
@@ -22,6 +28,7 @@ export default function ListMovies() {
             title={card.title}
             price={card.price}
             product={card}
+            qtdinCart ={qtdinCart(card.id)}
           />
         </div>
       ))}
