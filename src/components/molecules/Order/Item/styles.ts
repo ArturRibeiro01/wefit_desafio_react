@@ -6,6 +6,11 @@ export const ItemCartContainer = styled.section`
   background-color: ${(props) => props.theme.white};
   border-radius: 4px;
   color: #000;
+
+
+  @media (max-width: 560px) {
+    min-height: calc(100vh - 100px);
+  }
 `
 
 export const CulumnsModel = styled.div`
@@ -20,10 +25,14 @@ export const TitleItem = styled(CulumnsModel)`
   font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
+
+  @media (max-width: 560px) {
+    display: none
+  }
+
 `
 
 export const ItemContainer = styled(CulumnsModel)`
-
   margin-bottom: 1.25rem;
   align-items: center;
   div {
@@ -37,7 +46,60 @@ export const ItemContainer = styled(CulumnsModel)`
     max-height: 114px;
   }
 
+  @media (max-width: 560px) {
+    display: none
+  }
 `
+
+
+export const ItemContainerMobile = styled.section`
+
+  display: flex;
+  gap: 16px;
+  margin-bottom: 2rem;
+
+  .rows-container{
+    width: 100%;
+  }
+
+  img {
+    max-width: 64px;
+    max-height: 82px;
+  }
+
+  @media (min-width: 561px) {
+    display: none
+  }
+
+`
+
+export const RowMobileContainerContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 16px;
+
+  p{
+    width: 120px;
+  }
+`
+export const RowOne = styled(RowMobileContainerContainer)`
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 19px;
+  color: ${(props) => props.theme.background};
+
+`
+export const RowTwo = styled(RowMobileContainerContainer)`
+  align-items: center;
+  margin-top: 18px ;
+
+`
+
+
+
 
 export const TitleAndPriceContainer = styled.div`
   display: block !important;
@@ -112,21 +174,22 @@ export const Subtotal = styled.p`
   font-size: 16px;
   line-height: 22px;
 
+  @media (max-width: 560px) {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    color: ${(props) => props.theme.gray};
+    text-transform: uppercase;
+    text-align: right;
 
-  // '@sm': {
-  //   width: 'fit-content',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'flex-end',
-  //   justifyContent: 'center',
+    span {
+      color: ${(props) => props.theme.background};
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
 
-  //   span: {
-  //     display: 'inherit',
-  //     fontSize: '1.2rem',
-  //     color: '$gray300',
-  //     textTransform: 'uppercase',
-  //   },
-  // },
 `
 
 export const TrashButtonContainer = styled.div`

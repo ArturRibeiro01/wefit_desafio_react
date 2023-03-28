@@ -11,17 +11,14 @@ export const NoMatchContainer = styled.div`
   flex-direction: column;
 
 
-
   @media (max-width: 560px) {
     padding: 4rem 0;
-
   }
 
   p {
-
+    color: ${(props) => props.theme.background};
     font-size: 20px;
     font-weight: 700;
-    color: ${(props) => props.theme.background};
     text-align: center;
   }
 
@@ -43,6 +40,18 @@ export const NoMatchContainer = styled.div`
     border: none;
     padding: 10px 60px;
     border-radius: 4px;
+  }
+
+  @media (max-width: 560px) {
+    p {
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    img {
+    max-width: 350px;
+    margin: 1rem auto;
+    }
   }
 
 `
