@@ -23,10 +23,10 @@ interface ChangeItemCartQtdProps {
 
 interface MoviesContextType {
   products: Products[]
-  itemCart: ItemCart[]
-  inCartQuantity: number
   getProducts: () => void
 
+  inCartQuantity: number
+  itemCart: ItemCart[]
   ItemsCartTotal: number //numero de itens no carrinho
 
   addProductToCart: (movie: ItemCart) => void
@@ -52,21 +52,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   let inCartQuantity = itemCart.length
 
 
-  let ItemsCartTotal = useMemo(
-    () =>
-      itemCart.reduce(
-        (totalPrice, movie) => (totalPrice += movie.price * movie.quantity),
-        0,
-      ),
-    [itemCart],
-  )
-
-  let haveMovieInCart = useCallback(
-    (movieId: number) => itemCart.findIndex(({ id }) => id === movieId),
-
-    [itemCart],
-  )
-
   //Faz a requisição de todas os produtos
   const getProducts = useCallback( async () => {
     const response = await api.get('/products', {
@@ -75,6 +60,19 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
 
     setProducts(response.data)
   }, [])
+
+
+  let ItemsCartTotal = useMemo(() => itemCart.reduce
+    (
+      (totalPrice, movie) => (totalPrice += movie.price * movie.quantity),
+      0,
+    ),[itemCart],
+  )
+
+  const haveMovieInCart = useCallback(
+    (movieId: number) => itemCart.findIndex(({ id }) => id === movieId),
+    [itemCart],
+  )
 
 
   const addProductToCart = useCallback(
@@ -93,6 +91,12 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     },
     [itemCart, haveMovieInCart],
   )
+
+
+
+
+
+
 
 
   const changeCartItemQuantity = useCallback(
@@ -119,6 +123,15 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   )
 
 
+
+
+
+
+
+
+
+
+  // Remove um item do carrinho
   const removeCartItem = useCallback(
     (itemId: number) => {
       const newCart = produce(itemCart, (draft) => {
@@ -128,12 +141,15 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
           draft.splice(movieAlreadyExistsInCart, 1)
         }
       })
-
       setItemCart(newCart)
     },
     [itemCart, haveMovieInCart],
   )
 
+
+
+
+  //Retorna a quantidade de itens no carrinho
   const quantityMovieInStorage = useCallback(
     (movieId: number) => {
       if (!itemCart || itemCart.length <= 0) return 0
@@ -185,10 +201,20 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   return (
       <MoviesContext.Provider
       value={{
+
+
+        //usados
         products,
         getProducts,
+        itemCart,//Itens no carrinho
 
-        itemCart,
+
+
+
+        // Não usados
+
+
+
         inCartQuantity,
         ItemsCartTotal,
         haveMovieInCart,

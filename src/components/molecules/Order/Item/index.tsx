@@ -1,23 +1,50 @@
-
 import { useContextSelector } from 'use-context-selector';
 import { MoviesContext } from '../../../../context/MoviesContext';
-import { ItemContainer, TransactionContainer } from './styles'
+import { ItemCartContainer, ItemContainer, TitleAndPriceContainer, TitleItem } from './styles';
 
 export default function Item() {
 
-  const itemsInCart = useContextSelector(MoviesContext, (context) => {
+
+  const itemcart  = useContextSelector(MoviesContext, (context) => {
     return context.itemCart
   });
 
-  let valores = Array(itemsInCart)
+  console.log('itemcart',itemcart )
+  console.log('itemcart',typeof (itemcart) )
 
 
-  console.log( 'tipo',valores[0])
-  console.log('valores', Array(itemsInCart))
 
+  const itemTitleSub = ["produto","qtd","subtotal",""];
 
   return (
-    <p>teste</p>
+    <ItemCartContainer>
+
+      <TitleItem>
+      {itemTitleSub.map(item => (
+        <p>{item}</p>
+      ))}
+      </TitleItem>
+
+      {itemcart.map(item => (
+        <ItemContainer key={item.id}>
+            <div>
+              <img src={item.image}/>
+              <TitleAndPriceContainer>
+                <p>{item.title}</p>
+                <p>{item.price}</p>
+              </TitleAndPriceContainer>
+
+            </div>
+
+            <p>teste</p>
+            <p>teste</p>
+            <p>teste</p>
+        </ItemContainer>
+
+      ))}
+
+    </ItemCartContainer>
+
   )
 }
 
