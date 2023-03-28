@@ -24,7 +24,7 @@ export const SelectorQuantity = styled.section`
     align-items: flex-start;
     padding: 0.35rem 1.6rem;
 
-    border: 1px solid $gray100;
+    /* border: 1px solid $gray100; */
     border-radius: 4px;
 
     font-weight: 400;
@@ -40,30 +40,4 @@ export const SelectorQuantity = styled.section`
       padding: 0.35rem 1.2rem;
     };
   }; */
-`
-
-
-export const Subtotal = styled.p`
-  width: min(100%, 21.369rem);
-  font-size: 1.6rem;
-  color: $gray900;
-
-  span: {
-    display: 'none';
-  };
-
-  // '@sm': {
-  //   width: 'fit-content',
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   alignItems: 'flex-end',
-  //   justifyContent: 'center',
-
-  //   span: {
-  //     display: 'inherit',
-  //     fontSize: '1.2rem',
-  //     color: '$gray300',
-  //     textTransform: 'uppercase',
-  //   },
-  // },
 `

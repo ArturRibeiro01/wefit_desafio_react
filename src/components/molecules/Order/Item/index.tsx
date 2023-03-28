@@ -1,52 +1,36 @@
 import { useContextSelector } from 'use-context-selector';
-import { ItemCart, MoviesContext } from '../../../../context/MoviesContext';
+import {  ItemCart, MoviesContext } from '../../../../context/MoviesContext';
 import { formatPrice } from '../../../../utils/formatPrice';
-import { Quantity } from '../../../atoms/Order/Item/Quantify';
-import TrashButton from '../../../atoms/Order/Item/TrashButton';
-import { ItemCartContainer, ItemContainer, TitleAndPriceContainer, TitleItem, TrashButtonContainer } from './styles';
+import { ItemCartContainer, ItemContainer, PurchaseItemsContainer, SelectorQuantity, Subtotal, TitleAndPriceContainer, TitleItem, TrashButtonContainer } from './styles';
 import trashImg from "../../../../assets/img/trash.svg"
+import { Link } from 'react-router-dom';
 
-interface CartItemProps {
-  product: ItemCart
-}
+import decreaseIcon from '../../../../assets/img/decrease.svg'
+import IncreaseIcon from '../../../../assets/img/increase.svg'
 
-export default function Item({product}: CartItemProps) {
 
+export default function Item() {
 
   const itemcart  = useContextSelector(MoviesContext, (context) => {
     return context.itemCart
   });
 
-  const cartItemQuantity  = useContextSelector(MoviesContext, (context) => {
-    return context.changeCartItemQuantity
-  });
-
   const removeCartItem  = useContextSelector(MoviesContext, (context) => {
-    return context.changeCartItemQuantity
+    return context.removeCartItem
   });
 
+  const purchaseValue  = useContextSelector(MoviesContext, (context) => {
+    return context.ItemsCartTotal
+  });
 
-
-
-
-  // console.log('produto', product)
-
-  // console.log('itemcart',itemcart )
-  // console.log('itemcart',typeof (itemcart) )
-
-
-  // const handleDecrease = () =>
-  // cartItemQuantity({ itemId: product.id, type: 'decrease' })
-
-  // const handleIncrease = () =>
-  // cartItemQuantity({ itemId: product.id, type: 'increase' })
-
-  const handleRemove = () => removeCartItem(itemcart?.id)
-
+  const changeCartbyQtd  = useContextSelector(MoviesContext, (context) => {
+    return context.changeCartItemQuantity
+  });
 
 
 
   const itemTitleSub = ["produto","qtd","subtotal",""];
+
 
   return (
     <ItemCartContainer>
@@ -59,41 +43,74 @@ export default function Item({product}: CartItemProps) {
 
       {itemcart.map(item => (
         <ItemContainer key={item.id}>
-            <div>
-              <img src={item.image}/>
-              <TitleAndPriceContainer>
-                <p>{item.title}</p>
-                <span>{formatPrice.format(item.price)}</span>
-              </TitleAndPriceContainer>
+          <div>
+            <img src={item.image} />
+            <TitleAndPriceContainer>
+              <p>{item.title}</p>
+              <span>{formatPrice.format(item.price)}</span>
+            </TitleAndPriceContainer>
 
-            </div>
+          </div>
+          <SelectorQuantity>
+              <button type="button"
+               onClick={() =>  changeCartbyQtd({itemId: item.id, type: 'decrease'})}
+              >
+                <img
+                  src={decreaseIcon}
+                  alt="Botão de ajuste para decrementar"
+                  width={18}
+                  height={18}
+                />
+              </button>
 
-            <Quantity
-              // quantity={product?.quantity}
-              // onDecrease={handleDecrease}
-              // onIncrease={handleIncrease}
-            />
+              <span>{item.quantity}</span>
 
-          {/* <Subtotal>
-            <span>Subtotal</span>
-            {subtotal}
-          </Subtotal> */}
-          <p>Subtotal</p>
+              <button
+                type="button"
+                onClick={() => changeCartbyQtd({itemId: item.id, type: 'increase'})}
+              >
+                <img
+                  src={IncreaseIcon}
+                  alt="Botão de ajuste para incrementar"
+                  width={18}
+                  height={18}
+                />
+              </button>
+            </SelectorQuantity>
+          <Subtotal>
+            {/* <span>{subtotal}</span> */}
+
+            <span>{
+             formatPrice.format(item.price * item.quantity)
+            }</span>
+          </Subtotal>
 
           <TrashButtonContainer>
-            <button type="button" onClick={handleRemove}>
+            <button type="button" onClick={() => removeCartItem(item.id)}>
               <img
                 src={trashImg}
                 alt="Botão para deletar item do carrinho"
                 width={18}
-                height={18}
-              />
+                height={18} />
             </button>
           </TrashButtonContainer>
 
         </ItemContainer>
 
+
       ))}
+
+      <PurchaseItemsContainer>
+        <Link to="/success">
+          <button>
+            finalizar pedido
+          </button>
+        </Link>
+        <div>
+          <span>Total</span>
+          <p>{formatPrice.format(purchaseValue)}</p>
+        </div>
+      </PurchaseItemsContainer>
 
     </ItemCartContainer>
 

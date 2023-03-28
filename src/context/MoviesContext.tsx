@@ -31,9 +31,12 @@ interface MoviesContextType {
 
   addProductToCart: (movie: ItemCart) => void
   changeCartItemQuantity: (value: ChangeItemCartQtdProps) => void
-  cleanCart: () => void
+  // cleanCart: () => void
   haveMovieInCart: (itemId: number) => number
   quantityMovieInStorage: (itemId: number) => number
+
+
+  // Remove Item do Carrinho
   removeCartItem: (itemId: number) => void
 
 }
@@ -75,6 +78,7 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   )
 
 
+  // Adiciona Produtos no Carrinho
   const addProductToCart = useCallback(
     (movie: ItemCart) => {
       const movieAlreadyExistsInCart = haveMovieInCart(movie.id)
@@ -86,7 +90,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
           draft[movieAlreadyExistsInCart].quantity += movie.quantity
         }
       })
-
       setItemCart(newCart)
     },
     [itemCart, haveMovieInCart],
@@ -98,7 +101,7 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
 
 
 
-
+  //Muda a Quantidade de itens no carrinho
   const changeCartItemQuantity = useCallback(
     ({ itemId, type }: ChangeItemCartQtdProps) => {
       const newCart = produce(itemCart, (draft) => {
@@ -149,7 +152,7 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
 
 
 
-  //Retorna a quantidade de itens no carrinho
+  //Retorna a quantidade de itens no carrinho no Local Storage
   const quantityMovieInStorage = useCallback(
     (movieId: number) => {
       if (!itemCart || itemCart.length <= 0) return 0
@@ -177,19 +180,18 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   //
 
 
-  const cleanCart = useCallback(() => {
-    setItemCart([])
-    saveLocalStorage([])
-  }, [])
+  // const cleanCart = useCallback(() => {
+  //   setItemCart([])
+  //   saveLocalStorage([])
+  // }, [])
 
   useEffect(() => {
     if (itemCart.length === 0) return
-
     saveLocalStorage(itemCart)
   }, [itemCart])
 
   useEffect(() => {
-    const localitemCart = fetchLocalStorage()
+    let localitemCart = fetchLocalStorage()
     setItemCart(localitemCart)
   }, [])
 
@@ -202,29 +204,27 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
       <MoviesContext.Provider
       value={{
 
-
-        //usados
-        products,
+        products, //Lista de Itens
         getProducts,
-        itemCart,//Itens no carrinho
+        itemCart, //Itens no carrinho
 
-
-
+        addProductToCart, //Adiciona produtos ao Carrinho
+        inCartQuantity, //Traz o número de filmes no carrinho
+        removeCartItem, //remove um item do carrinho
 
         // Não usados
 
 
 
-        inCartQuantity,
         ItemsCartTotal,
         haveMovieInCart,
 
-        addProductToCart,
+
         changeCartItemQuantity,
-        cleanCart,
+        // cleanCart,
 
         quantityMovieInStorage,
-        removeCartItem,
+
       }}
       >
         {children}

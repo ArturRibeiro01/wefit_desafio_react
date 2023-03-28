@@ -23,7 +23,8 @@ export const Quantity = ({
       />
     </button>
 
-    <span>{quantity}</span>
+    {/* <span>{quantity}</span> */}
+    <span>1</span>
 
     <button type="button" onClick={onIncrease}>
       <img

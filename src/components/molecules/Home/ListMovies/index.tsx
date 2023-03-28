@@ -11,9 +11,6 @@ export default function ListMovies() {
     return context.products
   });
 
-
-
-
   return (
     <ListMoviesContainer>
 
