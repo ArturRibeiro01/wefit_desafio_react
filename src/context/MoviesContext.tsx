@@ -24,19 +24,14 @@ interface ChangeItemCartQtdProps {
 interface MoviesContextType {
   products: Products[]
   getProducts: () => void
-
   inCartQuantity: number
   itemCart: ItemCart[]
-  ItemsCartTotal: number //numero de itens no carrinho
-
+  ItemsCartTotal: number
   addProductToCart: (movie: ItemCart) => void
   changeCartItemQuantity: (value: ChangeItemCartQtdProps) => void
-  // cleanCart: () => void
+  cleanCart: () => void
   haveMovieInCart: (itemId: number) => number
   quantityMovieInStorage: (itemId: number) => number
-
-
-  // Remove Item do Carrinho
   removeCartItem: (itemId: number) => void
 
 }
@@ -160,15 +155,11 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     }, 0);
   }, [])
 
-  //
-  //
-  //
 
-
-  // const cleanCart = useCallback(() => {
-  //   setItemCart([])
-  //   saveLocalStorage([])
-  // }, [])
+  const cleanCart = useCallback(() => {
+    setItemCart([])
+    saveLocalStorage([])
+  }, [])
 
   useEffect(() => {
     if (itemCart.length === 0) return
@@ -203,11 +194,8 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
 
         ItemsCartTotal,
         haveMovieInCart,
-
-
         changeCartItemQuantity,
-        // cleanCart,
-
+        cleanCart,
         quantityMovieInStorage,
 
       }}

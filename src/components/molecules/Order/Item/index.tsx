@@ -1,12 +1,13 @@
 import { useContextSelector } from 'use-context-selector';
 import {  ItemCart, MoviesContext } from '../../../../context/MoviesContext';
 import { formatPrice } from '../../../../utils/formatPrice';
-import { ItemCartContainer, ItemContainer, ItemContainerMobile, PurchaseItemsContainer, RowOne, RowTwo, SelectorQuantity, Subtotal, TitleAndPriceContainer, TitleItem, TrashButtonContainer } from './styles';
+import { ItemCartContainer, ItemContainer, ItemContainerMobile, ItemMobile, PurchaseItemsContainer, RowOne, RowTwo, SelectorQuantity, Subtotal, TitleAndPriceContainer, TitleItem, TrashButtonContainer } from './styles';
 import trashImg from "../../../../assets/img/trash.svg"
 import { Link } from 'react-router-dom';
 
 import decreaseIcon from '../../../../assets/img/decrease.svg'
 import IncreaseIcon from '../../../../assets/img/increase.svg'
+import { useEffect } from 'react';
 
 
 export default function Item() {
@@ -27,10 +28,29 @@ export default function Item() {
     return context.changeCartItemQuantity
   });
 
+  const clean  = useContextSelector(MoviesContext, (context) => {
+    return context.cleanCart
+  });
+
+  // const qtdItensinCart = useContextSelector(MoviesContext, (context) => {
+  //   return context.inCartQuantity
+  // });
+
+  console.log('art', itemcart)
+
   const itemTitleSub = ["produto","qtd","subtotal",""];
 
 
+  if(itemcart.length == 0){
+    console.log('ta vazio')
+  }
+
   return (
+
+
+
+
+
     <ItemCartContainer>
       <TitleItem>
       {itemTitleSub.map(item => (
@@ -90,68 +110,66 @@ export default function Item() {
         </ItemContainer>
       ))}
 
+      <ItemContainerMobile>
+        {itemcart.map(item => (
+          <ItemMobile key={item.id + "mobile"}>
 
-      {itemcart.map(item => (
-        <ItemContainerMobile key={item.id + "mobile"}>
+            <img src={item.image} />
+            <div className='rows-container'>
+              <RowOne>
+                <p>{item.title}</p>
+                <span>{formatPrice.format(item.price)}</span>
+                <TrashButtonContainer>
+                  <button type="button" onClick={() => removeCartItem(item.id)}>
+                    <img
+                      src={trashImg}
+                      alt="Botão para deletar item do carrinho"
+                      width={18}
+                      height={18}
+                    />
+                  </button>
+                </TrashButtonContainer>
+              </RowOne>
 
-          <img src={item.image} />
-          <div className='rows-container'>
-            <RowOne>
-              <p>{item.title}</p>
-              <span>{formatPrice.format(item.price)}</span>
-              <TrashButtonContainer>
-                <button type="button" onClick={() => removeCartItem(item.id)}>
-                  <img
-                    src={trashImg}
-                    alt="Botão para deletar item do carrinho"
-                    width={18}
-                    height={18}
-                  />
-                </button>
-              </TrashButtonContainer>
-            </RowOne>
-
-            <RowTwo>
-                <SelectorQuantity>
-                  <button type="button"
-                  onClick={() =>  changeCartbyQtd({itemId: item.id, type: 'decrease'})}
+              <RowTwo>
+                  <SelectorQuantity>
+                    <button type="button"
+                    onClick={() =>  changeCartbyQtd({itemId: item.id, type: 'decrease'})}
+                    >
+                    <img
+                      src={decreaseIcon}
+                      alt="Botão de ajuste para decrementar"
+                      width={18}
+                      height={18}
+                    />
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    type="button"
+                    onClick={() => changeCartbyQtd({itemId: item.id, type: 'increase'})}
                   >
-                  <img
-                    src={decreaseIcon}
-                    alt="Botão de ajuste para decrementar"
-                    width={18}
-                    height={18}
-                  />
-                </button>
-                <span>{item.quantity}</span>
-                <button
-                  type="button"
-                  onClick={() => changeCartbyQtd({itemId: item.id, type: 'increase'})}
-                >
-                  <img
-                    src={IncreaseIcon}
-                    alt="Botão de ajuste para incrementar"
-                    width={18}
-                    height={18}
-                  />
-                </button>
-              </SelectorQuantity>
+                    <img
+                      src={IncreaseIcon}
+                      alt="Botão de ajuste para incrementar"
+                      width={18}
+                      height={18}
+                    />
+                  </button>
+                </SelectorQuantity>
 
 
-              <Subtotal>
-                <p>subtotal</p>
-                <span>{
-                formatPrice.format(item.price * item.quantity)
-                }</span>
-              </Subtotal>
-            </RowTwo>
-          </div>
-        </ItemContainerMobile>
+                <Subtotal>
+                  <p>Subtotal</p>
+                  <span>{
+                  formatPrice.format(item.price * item.quantity)
+                  }</span>
+                </Subtotal>
+              </RowTwo>
+            </div>
+          </ItemMobile>
 
-      ))}
-
-
-
+        ))}
+      </ItemContainerMobile>
       <PurchaseItemsContainer>
         <Link to="/success">
           <button>

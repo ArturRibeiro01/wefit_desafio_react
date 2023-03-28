@@ -5,11 +5,11 @@ export const ItemCartContainer = styled.section`
   padding: 24px;
   background-color: ${(props) => props.theme.white};
   border-radius: 4px;
-  color: #000;
 
 
   @media (max-width: 560px) {
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 120px);
+    position: relative
   }
 `
 
@@ -35,6 +35,7 @@ export const TitleItem = styled(CulumnsModel)`
 export const ItemContainer = styled(CulumnsModel)`
   margin-bottom: 1.25rem;
   align-items: center;
+
   div {
     display: flex;
     align-items: center;
@@ -51,8 +52,16 @@ export const ItemContainer = styled(CulumnsModel)`
   }
 `
 
-
 export const ItemContainerMobile = styled.section`
+  min-height: 75vh;
+
+  @media (min-width: 560px) {
+    min-height: 0;
+
+  }
+`
+
+export const ItemMobile = styled.section`
 
   display: flex;
   gap: 16px;
@@ -79,12 +88,13 @@ export const RowMobileContainerContainer = styled.div`
   align-items: center;
   flex-direction: row;
   justify-content: space-between;
-  gap: 16px;
+  gap: 10px;
 
   p{
     width: 120px;
   }
 `
+
 export const RowOne = styled(RowMobileContainerContainer)`
   font-weight: 700;
   font-size: 14px;
@@ -92,14 +102,12 @@ export const RowOne = styled(RowMobileContainerContainer)`
   color: ${(props) => props.theme.background};
 
 `
+
 export const RowTwo = styled(RowMobileContainerContainer)`
   align-items: center;
   margin-top: 18px ;
 
 `
-
-
-
 
 export const TitleAndPriceContainer = styled.div`
   display: block !important;
@@ -154,25 +162,13 @@ export const SelectorQuantity = styled.section`
     font-size: 14px;
     line-height: 19px;
   };
-
-  /* @sm: {
-    width: 11.7rem;
-
-    span: {
-      width: 100%;
-      padding: 0.35rem 1.2rem;
-    };
-  }; */
 `
-
-
-
-
 
 export const Subtotal = styled.p`
   font-weight: 700;
   font-size: 16px;
   line-height: 22px;
+  color: ${(props) => props.theme.background};
 
   @media (max-width: 560px) {
     font-weight: 700;
@@ -205,6 +201,7 @@ export const TrashButtonContainer = styled.div`
 export const PurchaseItemsContainer = styled.div`
   display: flex;
   justify-content: space-between;
+
   align-items: center;
   border-top: 1px solid ${(props) => props.theme.gray};
   padding-top: 21px;
@@ -238,6 +235,31 @@ export const PurchaseItemsContainer = styled.div`
       font-weight: 700;
       font-size: 24px;
       line-height: 33px;
+      color: ${(props) => props.theme.background};
+    }
+  }
+
+
+  @media (max-width: 560px) {
+    flex-direction: column-reverse;
+    position: relative;
+    bottom: 0;
+    bottom : 0 ;
+    align-items: flex-end;
+
+    > div {
+      width: 100%;
+      justify-content: flex-end;
+
+    }
+
+    a {
+      width: 100%;
+      margin-top: 1rem;
+
+      button {
+        width: 100%;
+      }
     }
   }
 `
