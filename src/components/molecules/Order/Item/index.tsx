@@ -1,16 +1,48 @@
 import { useContextSelector } from 'use-context-selector';
-import { MoviesContext } from '../../../../context/MoviesContext';
-import { ItemCartContainer, ItemContainer, TitleAndPriceContainer, TitleItem } from './styles';
+import { ItemCart, MoviesContext } from '../../../../context/MoviesContext';
+import { formatPrice } from '../../../../utils/formatPrice';
+import { Quantity } from '../../../atoms/Order/Item/Quantify';
+import TrashButton from '../../../atoms/Order/Item/TrashButton';
+import { ItemCartContainer, ItemContainer, TitleAndPriceContainer, TitleItem, TrashButtonContainer } from './styles';
+import trashImg from "../../../../assets/img/trash.svg"
 
-export default function Item() {
+interface CartItemProps {
+  product: ItemCart
+}
+
+export default function Item({product}: CartItemProps) {
 
 
   const itemcart  = useContextSelector(MoviesContext, (context) => {
     return context.itemCart
   });
 
-  console.log('itemcart',itemcart )
-  console.log('itemcart',typeof (itemcart) )
+  const cartItemQuantity  = useContextSelector(MoviesContext, (context) => {
+    return context.changeCartItemQuantity
+  });
+
+  const removeCartItem  = useContextSelector(MoviesContext, (context) => {
+    return context.changeCartItemQuantity
+  });
+
+
+
+
+
+  // console.log('produto', product)
+
+  // console.log('itemcart',itemcart )
+  // console.log('itemcart',typeof (itemcart) )
+
+
+  // const handleDecrease = () =>
+  // cartItemQuantity({ itemId: product.id, type: 'decrease' })
+
+  // const handleIncrease = () =>
+  // cartItemQuantity({ itemId: product.id, type: 'increase' })
+
+  const handleRemove = () => removeCartItem(itemcart?.id)
+
 
 
 
@@ -21,7 +53,7 @@ export default function Item() {
 
       <TitleItem>
       {itemTitleSub.map(item => (
-        <p>{item}</p>
+        <p key={item}>{item}</p>
       ))}
       </TitleItem>
 
@@ -31,14 +63,34 @@ export default function Item() {
               <img src={item.image}/>
               <TitleAndPriceContainer>
                 <p>{item.title}</p>
-                <p>{item.price}</p>
+                <span>{formatPrice.format(item.price)}</span>
               </TitleAndPriceContainer>
 
             </div>
 
-            <p>teste</p>
-            <p>teste</p>
-            <p>teste</p>
+            <Quantity
+              // quantity={product?.quantity}
+              // onDecrease={handleDecrease}
+              // onIncrease={handleIncrease}
+            />
+
+          {/* <Subtotal>
+            <span>Subtotal</span>
+            {subtotal}
+          </Subtotal> */}
+          <p>Subtotal</p>
+
+          <TrashButtonContainer>
+            <button type="button" onClick={handleRemove}>
+              <img
+                src={trashImg}
+                alt="Botão para deletar item do carrinho"
+                width={18}
+                height={18}
+              />
+            </button>
+          </TrashButtonContainer>
+
         </ItemContainer>
 
       ))}
@@ -47,25 +99,3 @@ export default function Item() {
 
   )
 }
-
-      // <ItemContainer>
-      //   <TransactionContainer>
-      //     <p>produto</p>
-      //     <p>qtd</p>
-      //     <p>subtotal</p>
-      //   </TransactionContainer>
-
-
-      //   <TransactionContainer>
-      //     <div>
-      //       <p>produto</p>
-      //     </div>
-      //     <div>
-      //     <p>qtd</p>
-      //     </div>
-      //     <div>
-      //       <p>subtotal</p>
-      //     </div>
-      //     <div>4</div>
-      //   </TransactionContainer>
-      // </ItemContainer>

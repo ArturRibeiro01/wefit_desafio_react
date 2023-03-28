@@ -40,27 +40,29 @@ export const ItemContainer = styled(CulumnsModel)`
 `
 export const TitleAndPriceContainer = styled.div`
   display: block !important;
-
-`
-
-
-/*
-
-
-
-export const TransactionContainer = styled.div`
-
-
-
+  color: ${(props) => props.theme.background};
 
   p {
-    color: ${(props) => props.theme.gray};
     text-transform: uppercase;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 0.875rem;
+    line-height: 19px;
+    margin-bottom: 8px;
   }
 
+  span {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 22px;
+  }
 
+`
+export const TrashButtonContainer = styled.div`
+  justify-content: end;
 
+  button {
+    background-color: transparent;
+    border: 0;
+  }
 
-` */
+`
