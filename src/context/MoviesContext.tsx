@@ -46,19 +46,14 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
 
   const [products, setProducts] = useState<Products[]>([]);
   const [itemCart, setItemCart] = useState<ItemCart[]>([]);
-
   let inCartQuantity = itemCart.length
 
-
-  //Faz a requisição de todas os produtos
   const getProducts = useCallback( async () => {
     const response = await api.get('/products', {
       params: {},
     })
-
     setProducts(response.data)
   }, [])
-
 
   let ItemsCartTotal = useMemo(() => itemCart.reduce
     (
@@ -72,8 +67,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     [itemCart],
   )
 
-
-  // Adiciona Produtos no Carrinho
   const addProductToCart = useCallback(
     (movie: ItemCart) => {
       const movieAlreadyExistsInCart = haveMovieInCart(movie.id)
@@ -90,7 +83,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     [itemCart, haveMovieInCart],
   )
 
-  //Muda a Quantidade de itens no carrinho
   const changeCartItemQuantity = useCallback(
     ({ itemId, type }: ChangeItemCartQtdProps) => {
       const newCart = produce(itemCart, (draft) => {
@@ -114,7 +106,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     [itemCart, haveMovieInCart],
   )
 
-  // Remove um item do carrinho
   const removeCartItem = useCallback(
     (itemId: number) => {
       const newCart = produce(itemCart, (draft) => {
@@ -129,10 +120,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     [itemCart, haveMovieInCart],
   )
 
-
-
-
-  //Retorna a quantidade de itens no carrinho no Local Storage
   const quantityMovieInStorage = useCallback(
     (movieId: number) => {
       if (!itemCart || itemCart.length <= 0) return 0
@@ -146,9 +133,6 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     [itemCart, haveMovieInCart],
   )
 
-  //
-  //
-  //
   useEffect(() => {
     setTimeout(() => {
       getProducts()
@@ -171,33 +155,20 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
     setItemCart(localitemCart)
   }, [])
 
-
-
-
-
-
   return (
       <MoviesContext.Provider
       value={{
-
-        products, //Lista de Itens
+        products,
         getProducts,
-        itemCart, //Itens no carrinho
-
-        addProductToCart, //Adiciona produtos ao Carrinho
-        inCartQuantity, //Traz o número de filmes no carrinho
-        removeCartItem, //remove um item do carrinho
-
-        // Não usados
-
-
-
+        itemCart,
+        addProductToCart,
+        inCartQuantity,
+        removeCartItem,
         ItemsCartTotal,
         haveMovieInCart,
         changeCartItemQuantity,
         cleanCart,
         quantityMovieInStorage,
-
       }}
       >
         {children}
