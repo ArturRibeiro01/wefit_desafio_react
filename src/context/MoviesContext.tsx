@@ -4,7 +4,6 @@ import { createContext } from 'use-context-selector'
 import { api } from '../lib/axios';
 import { fetchLocalStorage, saveLocalStorage } from '../utils/localStorageSave';
 
-
 interface Products {
   id: number;
   title: string;
@@ -136,9 +135,8 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   useEffect(() => {
     setTimeout(() => {
       getProducts()
-    }, 0);
+    }, 2000);
   }, [])
-
 
   const cleanCart = useCallback(() => {
     setItemCart([])
@@ -156,7 +154,7 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
   }, [])
 
   return (
-      <MoviesContext.Provider
+    <MoviesContext.Provider
       value={{
         products,
         getProducts,
@@ -171,8 +169,7 @@ export function MoviesProvider({ children }: MoviesProviderProps) {
         quantityMovieInStorage,
       }}
       >
-        {children}
-      </MoviesContext.Provider>
+      {children}
+    </MoviesContext.Provider>
   )
-
 }
