@@ -61,5 +61,4 @@ export const Cart = styled.div`
     width: 30px;
     height: 25px;
   }
-
 `;

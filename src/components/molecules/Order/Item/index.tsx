@@ -32,8 +32,6 @@ export default function Item() {
     return context.cleanCart
   });
 
-  console.log('art', itemcart)
-
   const itemTitleSub = ["produto","qtd","subtotal",""];
 
   function CleanLocalStorageAndRedirect(){

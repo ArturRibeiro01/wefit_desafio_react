@@ -11,10 +11,5 @@ export const TrashButtonContainer = styled.button`
     objectFit: cover;
     width: auto;
     height: auto;
-
-    /* @sm: {
-      width: 1.6remnone;
-      aspectRatio: 0.89none;
-    }none; */
   }
 `

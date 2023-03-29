@@ -8,7 +8,5 @@ export default function Loader() {
         <img src={spinner} alt="icone de tela carregando"/>
       </Rotate>
     </LoaderContainer>
-
-
   )
 }

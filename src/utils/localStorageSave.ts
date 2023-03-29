@@ -1,6 +1,5 @@
 import { ItemCart } from '../context/MoviesContext'
 
-
 const MOVIE_ITEMS_STORAGE_KEY = 'WeMovies:cartItems'
 
 export const saveLocalStorage = (value: any) =>

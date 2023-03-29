@@ -6,11 +6,8 @@ export const NoMatchContainer = styled.div`
   display: flex;
   padding: 4rem;
   border-radius: 4px;
-
   display: flex;
   flex-direction: column;
-
-
   @media (max-width: 560px) {
     padding: 4rem 0;
   }
@@ -49,8 +46,8 @@ export const NoMatchContainer = styled.div`
     }
 
     img {
-    max-width: 350px;
-    margin: 1rem auto;
+      max-width: 350px;
+      margin: 1rem auto;
     }
   }
 

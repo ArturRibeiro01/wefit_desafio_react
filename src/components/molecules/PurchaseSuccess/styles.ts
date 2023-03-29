@@ -1,25 +1,19 @@
 import styled from 'styled-components'
 
-
 export const PurchaseSuccessContainer = styled.div`
   width: 100%;
   background-color: ${(props) => props.theme.white};
   display: flex;
   padding: 4rem;
   border-radius: 4px;
-
   display: flex;
   flex-direction: column;
 
-
-
   @media (max-width: 560px) {
     padding: 4rem 0;
-
   }
 
   p {
-
     font-size: 20px;
     font-weight: 700;
     color: ${(props) => props.theme.background};
@@ -29,7 +23,6 @@ export const PurchaseSuccessContainer = styled.div`
   img {
     max-width: 450px;
     margin: 2rem auto;
-
   }
 
   a {
@@ -46,5 +39,4 @@ export const PurchaseSuccessContainer = styled.div`
     padding: 10px 60px;
     border-radius: 4px;
   }
-
 `

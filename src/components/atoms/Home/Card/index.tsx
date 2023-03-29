@@ -14,11 +14,9 @@ interface CardProps {
 
 export default function Card({image, title, price, product, qtdinCart}:CardProps) {
 
-
   const addToCart = useContextSelector(MoviesContext, (context) => {
     return context.addProductToCart
   });
-
 
   function handleAddNewProductToChart() {
     const movieToAdd = { ...product, quantity: 1 }

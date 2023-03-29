@@ -20,6 +20,7 @@ export const LoaderContainer = styled.section`
   }
 
 `
+
 export const Rotate = styled.div`
   display: inline-block;
   animation: ${rotate} 2s linear infinite;

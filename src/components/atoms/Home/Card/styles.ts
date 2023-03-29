@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const CardContainer  = styled.div`
   background-color: ${(props) => props.theme.white};
@@ -58,6 +58,7 @@ export const AddCharButton = styled.button`
     font-weight: 400;
   }
 `
+
 export const InChartButton = styled(AddCharButton)`
   background-color: ${(props) => props.theme['green-500']};
   cursor : not-allowed

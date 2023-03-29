@@ -15,11 +15,8 @@ export default function ListMovies() {
     return context.quantityMovieInStorage
   });
 
-
-
   return (
     <ListMoviesContainer>
-
       { products.map(card => (
         <div key={card.id}>
           <Card
@@ -32,7 +29,6 @@ export default function ListMovies() {
           />
         </div>
       ))}
-
     </ListMoviesContainer>
   )
 }

@@ -19,13 +19,9 @@ export default function PurchaseSuccess() {
   return (
     <PurchaseSuccessContainer>
       <p>Compra realizada com sucesso!</p>
-
       <img src={SuccessPurchase} alt="" />
-
       <Link to="/">
-        <button>
-          voltar
-        </button>
+        <button>voltar</button>
       </Link>
   </PurchaseSuccessContainer>
   )

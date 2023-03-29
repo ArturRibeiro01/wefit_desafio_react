@@ -10,12 +10,10 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path='/' element={<MainPage />}>
-
         <Route path='/' element={<HomePage />} />
         <Route path='carrinho' element={<OrderPage />} />
         <Route path='success' element={<PurchaseSuccessPage />} />
         <Route path ="*" element={<NoMatchPage />}/>
-
       </Route>
     </Routes>
   )
